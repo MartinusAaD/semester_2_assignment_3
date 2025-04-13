@@ -49,6 +49,7 @@ const Form = () => {
 
     if (!expense.expenseDate) {
       errors.expenseDateError = "Please enter the date of specified expense!";
+      isValid = false;
     } else {
       errors.expenseDateError = "";
     }
