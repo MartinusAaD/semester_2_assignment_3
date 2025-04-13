@@ -19,9 +19,48 @@ const Form = () => {
     localStorage.setItem("expensesList", JSON.stringify(expensesList));
   }, [expensesList]);
 
+  const [errorMessages, setErrorMessages] = useState({});
+  const [formIsValid, setFormIsValid] = useState(true);
+
+  const handleValidation = () => {
+    const errors = { ...errorMessages };
+    let isValid = true;
+
+    if (!expense.expenseTitle.trim()) {
+      errors.expenseTitleError = "Please enter the expenses title!";
+      isValid = false;
+    } else {
+      errors.expenseTitleError = "";
+    }
+
+    if (!expense.expenseCategory) {
+      errors.expenseCategoryError = "Please choose an expense category!";
+      isValid = false;
+    } else {
+      errors.expenseCategoryError = "";
+    }
+
+    if (!expense.expenseAmount) {
+      errors.expenseAmountError = "Please specify the expense amount!";
+      isValid = false;
+    } else {
+      errors.expenseAmountError = "";
+    }
+
+    if (!expense.expenseDate) {
+      errors.expenseDateError = "Please enter the date of specified expense!";
+    } else {
+      errors.expenseDateError = "";
+    }
+
+    setErrorMessages(errors);
+    return isValid;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setExpense((prev) => ({ ...prev, [name]: value }));
+    setErrorMessages((prev) => ({ ...prev, [`${name}Error`]: "" }));
   };
 
   // const expenseTitle = useRef();
@@ -30,24 +69,26 @@ const Form = () => {
   // const expenseDate = useRef();
   // const expenseId = useRef();
 
-  const handleValidation = () => {};
-
   // Form Submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(expense);
+    const isFormValid = handleValidation();
 
-    setExpensesList((prev) => [...prev, expense]);
+    if (!isFormValid) {
+      return;
+    } else {
+      setExpensesList((prev) => [...prev, expense]);
 
-    // Reset Form
-    setExpense({
-      expenseTitle: "",
-      expenseCategory: "",
-      expenseAmount: "",
-      expenseDate: "",
-      expenseId: uuidv4(),
-    });
+      // Reset Form
+      setExpense({
+        expenseTitle: "",
+        expenseCategory: "",
+        expenseAmount: "",
+        expenseDate: "",
+        expenseId: uuidv4(),
+      });
+    }
   };
   const handleCancel = () => {};
   return (
@@ -57,7 +98,7 @@ const Form = () => {
           className={`${styles.formExpenseContainer} ${styles.formExpenseTitleContainer}`}
         >
           <label htmlFor="expenseTitle" className={styles.expenseLabel}>
-            Title:
+            Title: *
           </label>
           <input
             type="text"
@@ -68,12 +109,13 @@ const Form = () => {
             value={expense.expenseTitle}
             onChange={handleChange}
           />
+          <p className={styles.inputError}>{errorMessages.expenseTitleError}</p>
         </div>
         <div
           className={`${styles.formExpenseContainer} ${styles.formExpenseCategoryContainer}`}
         >
           <label htmlFor="expenseCategory" className={styles.expenseLabel}>
-            Category:
+            Category: *
           </label>
           <select
             name="expenseCategory"
@@ -91,12 +133,15 @@ const Form = () => {
             <option value="entertainment">Entertainment</option>
             <option value="other">Other</option>
           </select>
+          <p className={styles.inputError}>
+            {errorMessages.expenseCategoryError}
+          </p>
         </div>
         <div
           className={`${styles.formExpenseContainer} ${styles.formExpenseAmountContainer}`}
         >
           <label htmlFor="expenseAmount" className={styles.expenseLabel}>
-            Amount:
+            Amount: *
           </label>
           <input
             type="number"
@@ -107,11 +152,16 @@ const Form = () => {
             value={expense.expenseAmount}
             onChange={handleChange}
           />
+          <p className={styles.inputError}>
+            {errorMessages.expenseAmountError}
+          </p>
         </div>
         <div
           className={`${styles.formExpenseContainer} ${styles.formExpenseDateContainer}`}
         >
-          <label htmlFor="expenseDate">Date of expense:</label>
+          <label htmlFor="expenseDate" className={styles.expenseLabel}>
+            Date of expense: *
+          </label>
           <input
             type="date"
             name="expenseDate"
@@ -120,12 +170,13 @@ const Form = () => {
             value={expense.expenseDate}
             onChange={handleChange}
           />
+          <p className={styles.inputError}>{errorMessages.expenseDateError}</p>
         </div>
         <div
           className={`${styles.formExpenseContainer} ${styles.formExpenseIdContainer}`}
         >
           <label htmlFor="expenseId" className={styles.expenseLabel}>
-            ID:
+            ID: *
           </label>
           <input
             type="text"
@@ -137,6 +188,7 @@ const Form = () => {
             disabled
             onChange={handleChange}
           />
+          <p className={styles.inputError}></p>
         </div>
         <div
           className={`${styles.formExpenseContainer} ${styles.formButtonsContainer}`}

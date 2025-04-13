@@ -5,7 +5,9 @@ import Form from "./components/Form/Form";
 function App() {
   return (
     <div className={styles.rootContainer}>
-      <Form />
+      <main>
+        <Form />
+      </main>
     </div>
   );
 }
