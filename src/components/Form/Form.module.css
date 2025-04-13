@@ -1,0 +1,57 @@
+.formContainer {
+  width: 100%;
+  height: 100vh;
+  display: none; /* Hidden initially */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+
+  position: fixed;
+  z-index: 1000; /* Make sure it appears above other elements */
+  left: 0;
+  top: 0;
+}
+
+.formExpenses {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-large);
+  background-color: var(--color-background-light);
+  border-radius: var(--border-radius-medium);
+}
+
+.formExpenseContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.expenseInput {
+  padding: var(--spacing-small) var(--spacing-x-small);
+  border: none;
+  border-radius: var(--spacing-small);
+  box-shadow: 0px 1px 3px black;
+}
+
+.formButtonsContainer {
+  flex-direction: row;
+  gap: var(--spacing-medium);
+}
+
+.formButton {
+  flex-grow: 1;
+  color: var(--color-text-light);
+  background-color: var(--color-background-dark);
+  border: none;
+  border-radius: var(--spacing-small);
+  box-shadow: 0px 1px 3px black;
+}
+
+.formButton:hover {
+  opacity: 0.9;
+}
