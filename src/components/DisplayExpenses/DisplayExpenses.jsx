@@ -3,20 +3,38 @@ import styles from "./DisplayExpenses.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import FilterExpenses from "../FilterExpenses/FilterExpenses";
 
-const DisplayExpenses = ({ expensesList, setExpensesList }) => {
+const DisplayExpenses = ({
+  expensesList,
+  setExpensesList,
+  filteredList,
+  isListFiltered,
+}) => {
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
   const [expenseIdToDelete, setExpenseIdToDelete] = useState(null);
   const [totalExpense, setTotalExpense] = useState(0);
+  const [listToDisplay, setListToDisplay] = useState(expensesList);
 
   // Calculate total expense
   useEffect(() => {
-    const totalValue = expensesList.reduce((acc, expense) => {
+    const totalValue = listToDisplay.reduce((acc, expense) => {
       return acc + Number(expense.expenseAmount);
     }, 0);
 
     setTotalExpense(totalValue);
-  }, [expensesList]);
+  }, [listToDisplay]);
+
+  // Choose to display full or filtered list
+  useEffect(() => {
+    console.log(isListFiltered);
+
+    if (isListFiltered) {
+      setListToDisplay(filteredList);
+    } else {
+      setListToDisplay(expensesList);
+    }
+  }, [isListFiltered, filteredList, expensesList]);
 
   return (
     <>
@@ -32,7 +50,7 @@ const DisplayExpenses = ({ expensesList, setExpensesList }) => {
           </tr>
         </thead>
         <tbody>
-          {expensesList.map((expense) => {
+          {listToDisplay.map((expense) => {
             return (
               <tr className={styles.expenseRow} key={expense.expenseId}>
                 <td className={styles.expenseTitleCell}>

@@ -1,0 +1,11 @@
+.filterExpenseContainer {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  gap: var(--spacing-small);
+  margin-bottom: var(--spacing-medium);
+}
+
+.monthSelector {
+  padding: var(--spacing-small);
+}
