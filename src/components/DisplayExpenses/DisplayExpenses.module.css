@@ -1,7 +1,8 @@
 table {
-  width: 90%;
+  width: 85%;
   border-collapse: separate;
   border-spacing: 0;
+  padding-bottom: 5rem;
 }
 
 thead {
@@ -10,6 +11,11 @@ thead {
 
 tbody {
   width: 100%;
+}
+
+tfoot {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
 }
 
 tr {
@@ -25,7 +31,7 @@ th,
 td {
   padding: var(--spacing-small);
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(176, 176, 176, 0.5);
 }
 
 .expensesTableHeadRow {
@@ -47,6 +53,10 @@ th:last-child {
   border-top-right-radius: var(--spacing-medium);
 }
 
+.expenseRowEmpty {
+  height: 100px;
+}
+
 .expenseCategoryCell {
   width: 10%;
   white-space: nowrap;
@@ -66,13 +76,17 @@ th:last-child {
 }
 
 .expenseIdCell {
-  width: 40%;
+  width: 35%;
   white-space: normal;
   word-break: break-word;
 }
 
+.expenseIdCell {
+  letter-spacing: 2px;
+}
+
 .expenseToolsCell {
-  width: 10%;
+  width: 5%;
 }
 
 .toolsContainer {
@@ -100,7 +114,7 @@ th:last-child {
 .totalExpenseContainer {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-large);
+  gap: var(--spacing-small);
 }
 
 .totalExpenseContainer p:first-child {

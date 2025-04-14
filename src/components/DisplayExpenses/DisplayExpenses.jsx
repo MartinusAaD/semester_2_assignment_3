@@ -36,6 +36,10 @@ const DisplayExpenses = ({
     }
   }, [isListFiltered, filteredList, expensesList]);
 
+  const capitalizeFirstLetter = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   return (
     <>
       <table>
@@ -50,41 +54,50 @@ const DisplayExpenses = ({
           </tr>
         </thead>
         <tbody>
-          {listToDisplay.map((expense) => {
-            return (
-              <tr className={styles.expenseRow} key={expense.expenseId}>
-                <td className={styles.expenseTitleCell}>
-                  {expense.expenseTitle}
-                </td>
-                <td className={styles.expenseCategoryCell}>
-                  {expense.expenseCategory}
-                </td>
-                <td className={styles.expenseAmountCell}>
-                  {Number(expense.expenseAmount).toFixed(2)} ,-
-                </td>
-                <td className={styles.expenseDateCell}>
-                  {expense.expenseDate}
-                </td>
-                <td className={styles.expenseIdCell}>{expense.expenseId}</td>
-                <td className={styles.expenseToolsCell}>
-                  <div className={styles.toolsContainer}>
-                    <button className={styles.editButton}>
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </button>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() => {
-                        setExpenseIdToDelete(expense.expenseId);
-                        setIsDeleteModalActive(true);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
+          {listToDisplay.length === 0 ? (
+            <tr className={styles.expenseRowEmpty}>
+              <td colSpan={6}>
+                Start logging your expenses by clicking the plus button in the
+                bottom right corner!
+              </td>
+            </tr>
+          ) : (
+            listToDisplay.map((expense) => {
+              return (
+                <tr className={styles.expenseRow} key={expense.expenseId}>
+                  <td className={styles.expenseTitleCell}>
+                    {expense.expenseTitle}
+                  </td>
+                  <td className={styles.expenseCategoryCell}>
+                    {capitalizeFirstLetter(expense.expenseCategory)}
+                  </td>
+                  <td className={styles.expenseAmountCell}>
+                    {Number(expense.expenseAmount).toFixed(2)} ,-
+                  </td>
+                  <td className={styles.expenseDateCell}>
+                    {expense.expenseDate}
+                  </td>
+                  <td className={styles.expenseIdCell}>*******************</td>
+                  <td className={styles.expenseToolsCell}>
+                    <div className={styles.toolsContainer}>
+                      <button className={styles.editButton}>
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                      </button>
+                      <button
+                        className={styles.deleteButton}
+                        onClick={() => {
+                          setExpenseIdToDelete(expense.expenseId);
+                          setIsDeleteModalActive(true);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
         <tfoot>
           <tr>
