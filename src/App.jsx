@@ -18,14 +18,17 @@ function App() {
     <div className={styles.rootContainer}>
       <main>
         <h1>Expenses List</h1>
-        <DisplayExpenses expensesList={expensesList} />
+        <DisplayExpenses
+          expensesList={expensesList}
+          setExpensesList={setExpensesList}
+        />
         {/* Display form if isFormOpen = true */}
         {isFormOpen && (
           <Form
             setIsFormOpen={setIsFormOpen}
             setExpensesList={setExpensesList}
           />
-        )}{" "}
+        )}
         <OpenFormButton onClick={() => setIsFormOpen(true)} />
       </main>
     </div>
