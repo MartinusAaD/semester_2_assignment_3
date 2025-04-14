@@ -1,0 +1,20 @@
+.openFormModalButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 0.4rem;
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
+  font-size: var(--font-size-x-large);
+}
+
+.openFormModalButton svg {
+  transition: transform 0.2s ease-in-out;
+}
+
+.openFormModalButton:hover svg {
+  transform: scale(1.3);
+}

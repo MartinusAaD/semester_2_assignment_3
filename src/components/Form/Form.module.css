@@ -1,7 +1,6 @@
 .formContainer {
   width: 100%;
   height: 100vh;
-  display: none; /* Hidden initially */
   display: flex;
   justify-content: center;
   align-items: center;

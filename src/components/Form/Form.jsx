@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Form.module.css";
 import { v4 as uuidv4 } from "uuid";
 
-const Form = () => {
+const Form = ({ setIsFormOpen }) => {
   const [expense, setExpense] = useState({
     expenseTitle: "",
     expenseCategory: "",
@@ -64,11 +64,22 @@ const Form = () => {
     setErrorMessages((prev) => ({ ...prev, [`${name}Error`]: "" }));
   };
 
-  // const expenseTitle = useRef();
-  // const expenseCategory = useRef();
-  // const expenseAmount = useRef();
-  // const expenseDate = useRef();
-  // const expenseId = useRef();
+  // Cancel Button
+  const handleCancel = () => {
+    setIsFormOpen(false);
+    resetForm();
+  };
+
+  // Reset Form
+  const resetForm = () => {
+    setExpense({
+      expenseTitle: "",
+      expenseCategory: "",
+      expenseAmount: "",
+      expenseDate: "",
+      expenseId: uuidv4(),
+    });
+  };
 
   // Form Submit
   const handleSubmit = (e) => {
@@ -81,17 +92,10 @@ const Form = () => {
     } else {
       setExpensesList((prev) => [...prev, expense]);
 
-      // Reset Form
-      setExpense({
-        expenseTitle: "",
-        expenseCategory: "",
-        expenseAmount: "",
-        expenseDate: "",
-        expenseId: uuidv4(),
-      });
+      resetForm();
     }
   };
-  const handleCancel = () => {};
+
   return (
     <div className={styles.formContainer}>
       <form className={styles.formExpenses} onSubmit={handleSubmit} noValidate>
