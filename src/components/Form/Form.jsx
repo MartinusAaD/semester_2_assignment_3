@@ -64,6 +64,20 @@ const Form = ({ setIsFormOpen }) => {
     setErrorMessages((prev) => ({ ...prev, [`${name}Error`]: "" }));
   };
 
+  // This useEffect was created with the help of ChatGPT
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsFormOpen(false);
+        resetForm();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [setIsFormOpen]);
+
   // Cancel Button
   const handleCancel = () => {
     setIsFormOpen(false);
@@ -91,7 +105,6 @@ const Form = ({ setIsFormOpen }) => {
       return;
     } else {
       setExpensesList((prev) => [...prev, expense]);
-
       resetForm();
     }
   };
