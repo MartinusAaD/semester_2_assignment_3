@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DisplayExpenses.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,17 @@ import DeleteModal from "../DeleteModal/DeleteModal";
 const DisplayExpenses = ({ expensesList, setExpensesList }) => {
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
   const [expenseIdToDelete, setExpenseIdToDelete] = useState(null);
+  const [totalExpense, setTotalExpense] = useState(0);
+
+  // Calculate total expense
+  useEffect(() => {
+    const totalValue = expensesList.reduce((acc, expense) => {
+      return acc + Number(expense.expenseAmount);
+    }, 0);
+
+    setTotalExpense(totalValue);
+  }, [expensesList]);
+
   return (
     <>
       <table>
@@ -31,7 +42,7 @@ const DisplayExpenses = ({ expensesList, setExpensesList }) => {
                   {expense.expenseCategory}
                 </td>
                 <td className={styles.expenseAmountCell}>
-                  {expense.expenseAmount}
+                  {Number(expense.expenseAmount).toFixed(2)} ,-
                 </td>
                 <td className={styles.expenseDateCell}>
                   {expense.expenseDate}
@@ -57,6 +68,16 @@ const DisplayExpenses = ({ expensesList, setExpensesList }) => {
             );
           })}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={6}>
+              <div className={styles.totalExpenseContainer}>
+                <p>Total Expenses:</p>
+                <p>{Number(totalExpense).toFixed(2)} ,-</p>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
       {isDeleteModalActive && (
         <DeleteModal

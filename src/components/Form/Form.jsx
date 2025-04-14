@@ -81,7 +81,7 @@ const Form = ({ setIsFormOpen, setExpensesList }) => {
     setExpense({
       expenseTitle: "",
       expenseCategory: "",
-      expenseAmount: "",
+      expenseAmount: 0,
       expenseDate: "",
       expenseId: shortUUID().new(),
     });

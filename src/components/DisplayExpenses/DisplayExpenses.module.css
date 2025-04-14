@@ -96,3 +96,13 @@ th:last-child {
 .toolsContainer button:hover {
   opacity: 0.8;
 }
+
+.totalExpenseContainer {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-large);
+}
+
+.totalExpenseContainer p:first-child {
+  font-weight: bold;
+}
