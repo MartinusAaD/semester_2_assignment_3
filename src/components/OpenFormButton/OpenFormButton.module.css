@@ -9,6 +9,11 @@
   background-color: var(--color-background-dark);
   color: var(--color-text-light);
   font-size: var(--font-size-x-large);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.openFormModalButton:hover {
+  opacity: 0.8;
 }
 
 .openFormModalButton svg {

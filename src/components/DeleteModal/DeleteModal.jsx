@@ -21,23 +21,25 @@ const DeleteModal = ({
     (expense) => expense.expenseId === expenseIdToDelete
   );
   return (
-    <div className={styles.deleteModalContainer}>
-      <p className={styles.deleteMessage}>
-        Are you sure you want to delete "{expenseToDelete.expenseTitle}"?
-      </p>
-      <div className={styles.buttonsContainer}>
-        <button
-          className={styles.confirmButton}
-          onClick={() => removeExpense()}
-        >
-          Confirm
-        </button>
-        <button
-          className={styles.cancelButton}
-          onClick={() => setIsDeleteModalActive(false)}
-        >
-          Cancel
-        </button>
+    <div className={styles.deleteModalRootContainer}>
+      <div className={styles.deleteModalContainer}>
+        <p className={styles.deleteMessage}>
+          Are you sure you want to delete "{expenseToDelete.expenseTitle}"?
+        </p>
+        <div className={styles.buttonsContainer}>
+          <button
+            className={styles.confirmButton}
+            onClick={() => removeExpense()}
+          >
+            Confirm
+          </button>
+          <button
+            className={styles.cancelButton}
+            onClick={() => setIsDeleteModalActive(false)}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
