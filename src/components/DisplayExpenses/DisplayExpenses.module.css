@@ -1,0 +1,98 @@
+table {
+  width: 90%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  width: 100%;
+}
+
+tbody {
+  width: 100%;
+}
+
+tr {
+  width: 100%;
+  max-height: 32px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-background-medium);
+}
+
+th,
+td {
+  padding: var(--spacing-small);
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.expensesTableHeadRow {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
+}
+
+.expenseTitleCell {
+  width: 25%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+th:first-child {
+  border-top-left-radius: var(--spacing-medium);
+}
+
+th:last-child {
+  border-top-right-radius: var(--spacing-medium);
+}
+
+.expenseCategoryCell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.expenseAmountCell {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.expenseDateCell {
+  width: 15%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.expenseIdCell {
+  width: 40%;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.expenseToolsCell {
+  width: 10%;
+}
+
+.toolsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x-small);
+}
+
+.toolsContainer button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: var(--border-radius-medium);
+}
+
+.toolsContainer button:hover {
+  opacity: 0.8;
+}

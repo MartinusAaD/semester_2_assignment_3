@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(2px);
 
   position: fixed;
   z-index: 1000; /* Make sure it appears above other elements */

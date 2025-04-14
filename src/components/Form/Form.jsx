@@ -1,23 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Form.module.css";
-import { v4 as uuidv4 } from "uuid";
+import shortUUID from "short-uuid";
 
-const Form = ({ setIsFormOpen }) => {
+const Form = ({ setIsFormOpen, setExpensesList }) => {
   const [expense, setExpense] = useState({
     expenseTitle: "",
     expenseCategory: "",
     expenseAmount: "",
     expenseDate: "",
-    expenseId: uuidv4(),
+    expenseId: shortUUID().new(),
   });
-
-  const [expensesList, setExpensesList] = useState(
-    JSON.parse(localStorage.getItem("expensesList")) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem("expensesList", JSON.stringify(expensesList));
-  }, [expensesList]);
 
   const [errorMessages, setErrorMessages] = useState({});
   const [formIsValid, setFormIsValid] = useState(true);
@@ -91,7 +83,7 @@ const Form = ({ setIsFormOpen }) => {
       expenseCategory: "",
       expenseAmount: "",
       expenseDate: "",
-      expenseId: uuidv4(),
+      expenseId: shortUUID().new(),
     });
   };
 
