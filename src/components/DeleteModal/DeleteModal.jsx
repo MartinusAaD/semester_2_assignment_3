@@ -23,9 +23,12 @@ const DeleteModal = ({
   return (
     <div className={styles.deleteModalRootContainer}>
       <div className={styles.deleteModalContainer}>
+        {/* Message for delete modal */}
         <p className={styles.deleteMessage}>
           Are you sure you want to delete "{expenseToDelete.expenseTitle}"?
         </p>
+
+        {/* Buttons for delete modal */}
         <div className={styles.buttonsContainer}>
           <button
             className={styles.confirmButton}

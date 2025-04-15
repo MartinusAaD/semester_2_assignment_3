@@ -3,7 +3,6 @@ import styles from "./DisplayExpenses.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import FilterExpenses from "../FilterExpenses/FilterExpenses";
 
 const DisplayExpenses = ({
   expensesList,
@@ -28,10 +27,8 @@ const DisplayExpenses = ({
     setTotalExpense(totalValue);
   }, [listToDisplay]);
 
-  // Choose to display full or filtered list
+  // Choose to display full or filtered expensesList
   useEffect(() => {
-    console.log(isListFiltered);
-
     if (isListFiltered) {
       setListToDisplay(filteredList);
     } else {
@@ -39,6 +36,7 @@ const DisplayExpenses = ({
     }
   }, [isListFiltered, filteredList, expensesList]);
 
+  // Capitalize first letter function
   const capitalizeFirstLetter = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
@@ -48,15 +46,27 @@ const DisplayExpenses = ({
       <table>
         <thead>
           <tr className={styles.expensesTableHeadRow}>
-            <th className={styles.expenseTitleCell}>Title</th>
-            <th className={styles.expenseCategoryCell}>Category</th>
-            <th className={styles.expenseAmountCell}>Amount</th>
-            <th className={styles.expenseDateCell}>Date</th>
-            <th className={styles.expenseIdCell}>ID</th>
-            <th className={styles.expenseToolsCell}></th>
+            <th className={styles.expenseTitleCell} scope="col">
+              Title
+            </th>
+            <th className={styles.expenseCategoryCell} scope="col">
+              Category
+            </th>
+            <th className={styles.expenseAmountCell} scope="col">
+              Amount
+            </th>
+            <th className={styles.expenseDateCell} scope="col">
+              Date
+            </th>
+            <th className={styles.expenseIdCell} scope="col">
+              ID
+            </th>
+            <th className={styles.expenseToolsCell} scope="col"></th>
           </tr>
         </thead>
+
         <tbody>
+          {/* Either display starting message or the filtered/full expensesList */}
           {listToDisplay.length === 0 ? (
             <tr className={styles.expenseRowEmpty}>
               <td colSpan={6}>
@@ -80,20 +90,23 @@ const DisplayExpenses = ({
                   <td className={styles.expenseDateCell}>
                     {expense.expenseDate}
                   </td>
+                  {/* ID can be accessed in the edit window, or in the local storage */}
                   <td className={styles.expenseIdCell}>*******************</td>
                   <td className={styles.expenseToolsCell}>
                     <div className={styles.toolsContainer}>
+                      {/* Edit Button */}
                       <button
                         className={styles.editButton}
                         onClick={() => {
                           setIsFormOpen(true);
                           setIsInEditMode(true);
                           setExpenseToEdit(expense);
-                          console.log(expense);
                         }}
                       >
                         <FontAwesomeIcon icon={faPenToSquare} />
                       </button>
+
+                      {/* Delete Button */}
                       <button
                         className={styles.deleteButton}
                         onClick={() => {
@@ -110,6 +123,8 @@ const DisplayExpenses = ({
             })
           )}
         </tbody>
+
+        {/* Total expense renderer */}
         <tfoot>
           <tr>
             <td colSpan={6}>
@@ -121,6 +136,8 @@ const DisplayExpenses = ({
           </tr>
         </tfoot>
       </table>
+
+      {/* Delete Modal */}
       {isDeleteModalActive && (
         <DeleteModal
           setIsDeleteModalActive={setIsDeleteModalActive}

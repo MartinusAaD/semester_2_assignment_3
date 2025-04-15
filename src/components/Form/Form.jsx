@@ -9,7 +9,6 @@ const Form = ({
   isInEditMode,
   setIsInEditMode,
   expenseToEdit,
-  setExpenseToEdit,
 }) => {
   const [expense, setExpense] = useState({
     expenseTitle: "",
@@ -20,7 +19,6 @@ const Form = ({
   });
 
   const [errorMessages, setErrorMessages] = useState({});
-  const [formIsValid, setFormIsValid] = useState(true);
 
   // Populate Form
   useEffect(() => {
@@ -81,7 +79,7 @@ const Form = ({
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        handleCancel();
+        onModalClose();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -90,8 +88,8 @@ const Form = ({
     };
   }, [setIsFormOpen]);
 
-  // Cancel Button
-  const handleCancel = () => {
+  // Common setters upon closing the form modal
+  const onModalClose = () => {
     setIsFormOpen(false);
     setIsInEditMode(false);
     resetForm();
@@ -118,14 +116,14 @@ const Form = ({
       return;
     } else if (!isInEditMode) {
       setExpensesList((prev) => [...prev, expense]);
-      handleCancel();
+      onModalClose();
     } else {
       const updatedList = expensesList.map((item) =>
         item.expenseId === expense.expenseId ? expense : item
       );
 
       setExpensesList(updatedList);
-      handleCancel();
+      onModalClose();
     }
   };
 
@@ -237,7 +235,7 @@ const Form = ({
           <button
             type="button"
             className={`${styles.formCancelButton} ${styles.formButton}`}
-            onClick={handleCancel}
+            onClick={onModalClose}
           >
             Cancel
           </button>

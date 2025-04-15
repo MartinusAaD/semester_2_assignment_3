@@ -3,7 +3,6 @@ import styles from "./FilterExpenses.module.css";
 
 const FilterExpenses = ({
   expensesList,
-  filteredList,
   setFilteredList,
   setIsListFiltered,
 }) => {
@@ -25,7 +24,7 @@ const FilterExpenses = ({
   };
   return (
     <div className={styles.filterExpenseContainer}>
-      <label htmlFor="">Filter by month: </label>
+      <label htmlFor="monthFilter">Filter by month: </label>
       <select
         name="monthFilter"
         id="monthFilter"

@@ -6,6 +6,7 @@ import DisplayExpenses from "./components/DisplayExpenses/DisplayExpenses";
 import FilterExpenses from "./components/FilterExpenses/FilterExpenses";
 
 function App() {
+  // List logic
   const [expensesList, setExpensesList] = useState(
     JSON.parse(localStorage.getItem("expensesList")) || []
   );
@@ -16,6 +17,7 @@ function App() {
   const [filteredList, setFilteredList] = useState([]);
   const [isListFiltered, setIsListFiltered] = useState(false);
 
+  // Form logic
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [expenseToEdit, setExpenseToEdit] = useState(null);
@@ -24,13 +26,15 @@ function App() {
     <div className={styles.rootContainer}>
       <main>
         <h1>Expenses List</h1>
+
+        {/* Selector for filtering */}
         <FilterExpenses
           expensesList={expensesList}
-          filteredList={filteredList}
           setFilteredList={setFilteredList}
           setIsListFiltered={setIsListFiltered}
         />
 
+        {/* Renderer for expenses */}
         <DisplayExpenses
           expensesList={expensesList}
           setExpensesList={setExpensesList}
@@ -40,6 +44,7 @@ function App() {
           setIsInEditMode={setIsInEditMode}
           setExpenseToEdit={setExpenseToEdit}
         />
+
         {/* Display form if isFormOpen = true */}
         {isFormOpen && (
           <Form
@@ -49,7 +54,6 @@ function App() {
             isInEditMode={isInEditMode}
             setIsInEditMode={setIsInEditMode}
             expenseToEdit={expenseToEdit}
-            setExpenseToEdit={setExpenseToEdit}
           />
         )}
         <OpenFormButton onClick={() => setIsFormOpen(true)} />
