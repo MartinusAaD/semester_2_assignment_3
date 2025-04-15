@@ -2,7 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Form.module.css";
 import shortUUID from "short-uuid";
 
-const Form = ({ setIsFormOpen, setExpensesList }) => {
+const Form = ({
+  setIsFormOpen,
+  expensesList,
+  setExpensesList,
+  isInEditMode,
+  setIsInEditMode,
+  expenseToEdit,
+  setExpenseToEdit,
+}) => {
   const [expense, setExpense] = useState({
     expenseTitle: "",
     expenseCategory: "",
@@ -13,6 +21,19 @@ const Form = ({ setIsFormOpen, setExpensesList }) => {
 
   const [errorMessages, setErrorMessages] = useState({});
   const [formIsValid, setFormIsValid] = useState(true);
+
+  // Populate Form
+  useEffect(() => {
+    if (isInEditMode) {
+      setExpense({
+        expenseTitle: expenseToEdit.expenseTitle,
+        expenseCategory: expenseToEdit.expenseCategory,
+        expenseAmount: expenseToEdit.expenseAmount,
+        expenseDate: expenseToEdit.expenseDate,
+        expenseId: expenseToEdit.expenseId,
+      });
+    }
+  }, [expenseToEdit]);
 
   const handleValidation = () => {
     const errors = { ...errorMessages };
@@ -60,8 +81,7 @@ const Form = ({ setIsFormOpen, setExpensesList }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        setIsFormOpen(false);
-        resetForm();
+        handleCancel();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -73,6 +93,7 @@ const Form = ({ setIsFormOpen, setExpensesList }) => {
   // Cancel Button
   const handleCancel = () => {
     setIsFormOpen(false);
+    setIsInEditMode(false);
     resetForm();
   };
 
@@ -95,9 +116,16 @@ const Form = ({ setIsFormOpen, setExpensesList }) => {
 
     if (!isFormValid) {
       return;
-    } else {
+    } else if (!isInEditMode) {
       setExpensesList((prev) => [...prev, expense]);
-      resetForm();
+      handleCancel();
+    } else {
+      const updatedList = expensesList.map((item) =>
+        item.expenseId === expense.expenseId ? expense : item
+      );
+
+      setExpensesList(updatedList);
+      handleCancel();
     }
   };
 

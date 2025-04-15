@@ -17,6 +17,8 @@ function App() {
   const [isListFiltered, setIsListFiltered] = useState(false);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  const [expenseToEdit, setExpenseToEdit] = useState(null);
 
   return (
     <div className={styles.rootContainer}>
@@ -34,12 +36,20 @@ function App() {
           setExpensesList={setExpensesList}
           filteredList={filteredList}
           isListFiltered={isListFiltered}
+          setIsFormOpen={setIsFormOpen}
+          setIsInEditMode={setIsInEditMode}
+          setExpenseToEdit={setExpenseToEdit}
         />
         {/* Display form if isFormOpen = true */}
         {isFormOpen && (
           <Form
             setIsFormOpen={setIsFormOpen}
+            expensesList={expensesList}
             setExpensesList={setExpensesList}
+            isInEditMode={isInEditMode}
+            setIsInEditMode={setIsInEditMode}
+            expenseToEdit={expenseToEdit}
+            setExpenseToEdit={setExpenseToEdit}
           />
         )}
         <OpenFormButton onClick={() => setIsFormOpen(true)} />

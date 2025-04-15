@@ -10,6 +10,9 @@ const DisplayExpenses = ({
   setExpensesList,
   filteredList,
   isListFiltered,
+  setIsFormOpen,
+  setIsInEditMode,
+  setExpenseToEdit,
 }) => {
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
   const [expenseIdToDelete, setExpenseIdToDelete] = useState(null);
@@ -80,7 +83,15 @@ const DisplayExpenses = ({
                   <td className={styles.expenseIdCell}>*******************</td>
                   <td className={styles.expenseToolsCell}>
                     <div className={styles.toolsContainer}>
-                      <button className={styles.editButton}>
+                      <button
+                        className={styles.editButton}
+                        onClick={() => {
+                          setIsFormOpen(true);
+                          setIsInEditMode(true);
+                          setExpenseToEdit(expense);
+                          console.log(expense);
+                        }}
+                      >
                         <FontAwesomeIcon icon={faPenToSquare} />
                       </button>
                       <button
