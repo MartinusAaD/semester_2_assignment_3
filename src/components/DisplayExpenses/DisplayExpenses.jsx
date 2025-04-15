@@ -66,7 +66,7 @@ const DisplayExpenses = ({
               return (
                 <tr className={styles.expenseRow} key={expense.expenseId}>
                   <td className={styles.expenseTitleCell}>
-                    {expense.expenseTitle}
+                    {capitalizeFirstLetter(expense.expenseTitle)}
                   </td>
                   <td className={styles.expenseCategoryCell}>
                     {capitalizeFirstLetter(expense.expenseCategory)}

@@ -23,6 +23,10 @@ tr {
   max-height: 32px;
 }
 
+tbody tr {
+  background-color: var(--color-background-light);
+}
+
 tr:nth-child(even) {
   background-color: var(--color-background-medium);
 }
