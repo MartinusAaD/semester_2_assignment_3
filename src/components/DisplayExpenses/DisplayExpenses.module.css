@@ -44,7 +44,7 @@ td {
 }
 
 .expenseTitleCell {
-  width: 25%;
+  width: 40%;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -62,13 +62,13 @@ th:last-child {
 }
 
 .expenseCategoryCell {
-  width: 10%;
+  width: 20%;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .expenseAmountCell {
-  width: 10%;
+  width: 20%;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -79,15 +79,13 @@ th:last-child {
   overflow: hidden;
 }
 
-.expenseIdCell {
+/* .expenseIdCell {
   width: 35%;
   white-space: normal;
   word-break: break-word;
-}
-
-.expenseIdCell {
   letter-spacing: 2px;
-}
+} */
+
 
 .expenseToolsCell {
   width: 5%;
@@ -96,6 +94,7 @@ th:last-child {
 .toolsContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--spacing-x-small);
 }
 
@@ -109,6 +108,7 @@ th:last-child {
   color: var(--color-text-light);
   border: none;
   border-radius: var(--border-radius-medium);
+  
 }
 
 .toolsContainer button:hover {

@@ -1,12 +1,54 @@
-# React + Vite
+# 💼 Individual Assignment 3
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ⚛️ React Fundamentals – _Expense Tracker App_
 
-Currently, two official plugins are available:
+The goal of this assignment was to gain practical experience with the **React** library and build an interactive single-page application to track expenses.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📌 Project Overview
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project demonstrates fundamental React concepts through the creation of a simple **Expense Tracker App**, allowing users to:
+
+- ✏️ Add new expenses
+- 🗑️ Delete existing expenses
+- 🔁 Edit expense data
+- 💾 Persist data using **localStorage**
+- ➕ Calculate and display total expenses
+- 📋 Organize and display all entries
+- 📅 Filter expenses by month
+
+---
+
+## 📂 Expense Data Structure
+
+Each expense entry includes:
+
+- 🆔 **Expense ID** – Auto-generated unique identifier
+- 📝 **Expense Title** – Name of the expense
+- 💰 **Expense Amount** – Cost of the expense
+- 📆 **Expense Date** – When the expense occurred
+- 🗂️ **Expense Category** – One of the following:
+  - Housing
+  - Utilities
+  - Grocery
+  - Transportation
+  - Clothing
+  - Entertainment
+  - Other
+
+---
+
+## 🌐 Live Demo & Source Code
+
+- 🔗 [GitHub Repository](https://github.com/MartinusAaD/semester_2_assignment_1)
+- 🚀 [Live Site on Netlify]()
+
+---
+
+## 🛠️ Technologies Used
+
+- React (Functional Components and Hooks)
+- JavaScript
+- CSS
+- Browser Local Storage

@@ -6,6 +6,7 @@
   height: 70px;
   border: none;
   border-radius: 0.4rem;
+  box-shadow: 0 0 2px 2px var(--color-text-light);
   background-color: var(--color-background-dark);
   color: var(--color-text-light);
   font-size: var(--font-size-x-large);

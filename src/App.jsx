@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Form from "./components/Form/Form";
-import OpenFormButton from "./components/openFormButton/OpenFormButton";
+import OpenFormButton from "./components/OpenFormButton/OpenFormButton";
 import DisplayExpenses from "./components/DisplayExpenses/DisplayExpenses";
 import FilterExpenses from "./components/FilterExpenses/FilterExpenses";
 
@@ -25,7 +25,7 @@ function App() {
   return (
     <div className={styles.rootContainer}>
       <main>
-        <h1>Expenses List</h1>
+        <h1>Expenses Tracker</h1>
 
         {/* Selector for filtering */}
         <FilterExpenses

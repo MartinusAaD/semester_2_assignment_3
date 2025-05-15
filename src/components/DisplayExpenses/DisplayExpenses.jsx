@@ -58,9 +58,9 @@ const DisplayExpenses = ({
             <th className={styles.expenseDateCell} scope="col">
               Date
             </th>
-            <th className={styles.expenseIdCell} scope="col">
+            {/* <th className={styles.expenseIdCell} scope="col">
               ID
-            </th>
+            </th> */}
             <th className={styles.expenseToolsCell} scope="col"></th>
           </tr>
         </thead>
@@ -91,7 +91,7 @@ const DisplayExpenses = ({
                     {expense.expenseDate}
                   </td>
                   {/* ID can be accessed in the edit window, or in the local storage */}
-                  <td className={styles.expenseIdCell}>*******************</td>
+                  {/* <td className={styles.expenseIdCell}>{expense.expenseId}</td> */}
                   <td className={styles.expenseToolsCell}>
                     <div className={styles.toolsContainer}>
                       {/* Edit Button */}

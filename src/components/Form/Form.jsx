@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Form.module.css";
 import shortUUID from "short-uuid";
 
@@ -18,7 +18,9 @@ const Form = ({
     expenseId: shortUUID().new(),
   });
 
+  // useStates
   const [errorMessages, setErrorMessages] = useState({});
+  const [submitMessage, setSubmitMessage] = useState("");
 
   // Populate Form
   useEffect(() => {
@@ -33,6 +35,18 @@ const Form = ({
     }
   }, [expenseToEdit]);
 
+  // Remove submit message after set time
+  useEffect(() => {
+    if (submitMessage) {
+      const timer = setTimeout(() => {
+        setSubmitMessage("");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitMessage]);
+
+  // Validate Form
   const handleValidation = () => {
     const errors = { ...errorMessages };
     let isValid = true;
@@ -69,6 +83,7 @@ const Form = ({
     return isValid;
   };
 
+  // Handle useStates and remove error message on keystroke
   const handleChange = (e) => {
     const { name, value } = e.target;
     setExpense((prev) => ({ ...prev, [name]: value }));
@@ -93,6 +108,7 @@ const Form = ({
     setIsFormOpen(false);
     setIsInEditMode(false);
     resetForm();
+    setSubmitMessage("");
   };
 
   // Reset Form
@@ -106,7 +122,7 @@ const Form = ({
     });
   };
 
-  // Form Submit
+  // Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -116,14 +132,15 @@ const Form = ({
       return;
     } else if (!isInEditMode) {
       setExpensesList((prev) => [...prev, expense]);
-      onModalClose();
+      resetForm();
+      setSubmitMessage("Expense successfully added!");
     } else {
       const updatedList = expensesList.map((item) =>
         item.expenseId === expense.expenseId ? expense : item
       );
 
       setExpensesList(updatedList);
-      onModalClose();
+      setSubmitMessage("Expense successfully edited!");
     }
   };
 
@@ -226,6 +243,11 @@ const Form = ({
           />
           <p className={styles.inputError}></p>
         </div>
+
+        <div className={styles.submitMessageContainer}>
+          <p className={styles.submitMessage}>{submitMessage}</p>
+        </div>
+
         <div
           className={`${styles.formExpenseContainer} ${styles.formButtonsContainer}`}
         >
