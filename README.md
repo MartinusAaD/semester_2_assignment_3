@@ -42,7 +42,7 @@ Each expense entry includes:
 ## 🌐 Live Demo & Source Code
 
 - 🔗 [GitHub Repository](https://github.com/MartinusAaD/semester_2_assignment_1)
-- 🚀 [Live Site on Netlify]()
+- 🚀 [Live Site on Netlify](https://semester2-assignment3.netlify.app)
 
 ---
 
