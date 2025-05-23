@@ -7,9 +7,15 @@ import FilterExpenses from "./components/FilterExpenses/FilterExpenses";
 
 function App() {
   // List logic
-  const [expensesList, setExpensesList] = useState(
-    JSON.parse(localStorage.getItem("expensesList")) || []
-  );
+  const [expensesList, setExpensesList] = useState([]);
+
+  // fetch data from localStorage
+  useEffect(() => {
+    const storedExpenses =
+      JSON.parse(localStorage.getItem("expensesList")) || [];
+    setExpensesList(storedExpenses);
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("expensesList", JSON.stringify(expensesList));
   }, [expensesList]);
